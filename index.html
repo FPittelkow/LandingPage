@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Friedrich W. A. Pittelkow - designer, developer, and writer.">
+  <title>Friedrich W. A. Pittelkow</title>
+</head>
+<body>
+  <main class="page">
+
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div>
+        <h1 class="hero-title" id="hero-title">Friedrich</h1>
+        <p class="hero-copy">Designer, developer, and writer. Building clear, useful things on the web.</p>
+      </div>
+      <!-- <div class="hero-aside" aria-hidden="true">
+        <span class="stacked-name">W. A.<br>Pittelkow</span>
+      </div> -->
+    </section>
+
+    <nav class="directory" aria-label="Main links">
+      <button class="row-link social-toggle" id="socials" type="button" aria-expanded="false" aria-controls="social-menu">
+        <span>Socials</span><span class="arrow" aria-hidden="true">+</span>
+      </button>
+      <div class="social-menu" id="social-menu">
+        <a href="https://github.com/FPittelkow" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">-&gt;</span></a>
+        <a href="https://www.instagram.com/feingrau" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <a class="row-link" id="portfolio" href="https://monointerferenz.de" target="_blank">
+        <span>Portfolio</span><span class="arrow" aria-hidden="true">-&gt;</span>
+      </a>
+      <a class="row-link" id="blog" href="https://blog.monointerferenz.de" target="_blank">
+        <span>Blog</span><span class="arrow" aria-hidden="true">-&gt;</span>
+      </a>
+      <a class="row-link" id="contact" href="mailto:post@friedrich-pittelkow.com">
+        <span>Contact</span><span class="arrow" aria-hidden="true">-&gt;</span>
+      </a>
+    </nav>
+
+    <footer class="footer">
+      <span>© 2026 Friedrich W. A. Pittelkow</span>
+      <span>Jena, Germany / post@friedrich-pittelkow.com</span>
+    </footer>
+  </main>
+  <script>
+    const socialToggle = document.querySelector(".social-toggle");
+    const socialMenu = document.querySelector("#social-menu");
+    const socialArrow = socialToggle.querySelector(".arrow");
+    const socialTriggers = document.querySelectorAll("[data-open-socials]");
+
+    function setSocialMenu(open) {
+      socialToggle.setAttribute("aria-expanded", String(open));
+      socialMenu.classList.toggle("is-open", open);
+      socialArrow.textContent = open ? "-" : "+";
+    }
+
+    socialToggle.addEventListener("click", () => {
+      const isOpen = socialToggle.getAttribute("aria-expanded") === "true";
+      setSocialMenu(!isOpen);
+    });
+
+    socialTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        socialToggle.scrollIntoView({ behavior: "smooth", block: "center" });
+        setSocialMenu(true);
+      });
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setSocialMenu(false);
+        socialToggle.focus();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!socialMenu.contains(event.target) && !socialToggle.contains(event.target)) {
+        setSocialMenu(false);
+      }
+    });
+  </script>
+</body>
+</html>
