@@ -6,6 +6,7 @@
 ### Universal ###
 # Common files that should be ignored in all projects
 OldLandingPage/
+index_dev.html
 
 # Logs
 *.log
